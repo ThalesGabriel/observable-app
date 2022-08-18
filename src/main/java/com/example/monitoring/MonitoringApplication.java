@@ -11,3 +11,5 @@ public class MonitoringApplication {
 	}
 
 }
+
+// TODO melhorar gráfico do grafana com informações úteis e não genéricas.
