@@ -1,0 +1,41 @@
+spring:
+  data:
+    mongodb:
+      uri: 'mongodb://localhost:27017/app'
+
+server:
+  shutdown: graceful
+
+# health.mongo.enabled=false
+management:
+  metrics:
+    tags:
+      application: callback-router
+      host: ${HOSTNAME}
+    export:
+      influx:
+        enabled: ${INFLUX_METRICS_EXPORTER_ENABLED:true}
+        db: app
+        userName: my_user
+        password: my_pwd
+        uri: ${INFLUX_URI:http://localhost:8086}
+        step: ${INFLUX_METRICS_EXPORTER_INTERVAL:15s}
+        autoCreateDb: true
+  info:
+    env:
+      enabled: true
+  health:
+    diskspace:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java: 
+      version: @java.version@
