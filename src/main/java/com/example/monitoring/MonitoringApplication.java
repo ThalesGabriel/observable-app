@@ -17,7 +17,9 @@ public class MonitoringApplication {
 // TODO Centralizar logs
 // TODO Configurar k8s
 // TODO Melhorar health check
-// TODO API Gateway
+// TODO API Gateway - Kong
 // TODO Service mesh ou Event mesh
 // TODO configurar Sonarcloud
+// TODO configurar GitLab CI/CD
 // TODO Teste de performance com fortio
+// TODO Deploy em algum lugar que aceite o k8s gratuitamente
