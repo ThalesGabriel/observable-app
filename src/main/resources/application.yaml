@@ -1,16 +1,34 @@
 spring:
+  application:
+    name: monitoring-app
+  zipkin:
+    enabled: true
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
+    propagation:
+      type: B3,W3C
+    opentracing:
+      enabled: true
   data:
     mongodb:
       uri: 'mongodb://localhost:27017/app'
 
 server:
   shutdown: graceful
+  port: 8080
+#  Undertow comprimir todas as respostas que tenham esse content-type melhorando a performance
+  compression:
+    enabled: true # Whether response compression is enabled.
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json # Comma-separated list of MIME types that should be compressed.
+    min-response-size: 1024 # Minimum "Content-Length" value that is required for compression to be performed.
 
 # health.mongo.enabled=false
 management:
   metrics:
     tags:
-      application: callback-router
+      application: monitoring-app
       host: ${HOSTNAME}
     export:
       influx:

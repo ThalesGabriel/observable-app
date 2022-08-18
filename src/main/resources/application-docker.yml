@@ -1,0 +1,15 @@
+spring:
+  zipkin:
+    baseUrl: http://zipkin:9411/
+  jpa:
+    open-in-view: false
+    show-sql: false
+  data:
+    mongodb:
+      uri: 'mongodb://mongo:27017/app'
+
+management:
+  metrics:
+    export:
+      influx:
+        uri: http://influxdb:8086/

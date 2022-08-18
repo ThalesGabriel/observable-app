@@ -1,0 +1,68 @@
+version: "3.7"
+services:
+  app:
+    container_name: app
+    build:
+      context: ../
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+    depends_on:
+      - zipkin
+
+  mongodb:
+    container_name: mongodb
+    image: "mongo:4.4.3"
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - app-network
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb:1.8
+    restart: always
+    ports:
+      - '8086:8086'
+    environment:
+      INFLUXDB_DB: app
+    networks:
+      - app-network
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ../src/main/resources/prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    networks:
+      - app-network
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    depends_on:
+      - influxdb
+    ports:
+      - 3000:3000
+    volumes:
+      - ../grafana:/etc/grafana/provisioning
+    user: "472"
+    networks:
+      - app-network
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    networks:
+      - app-network
+    ports:
+      - "9411:9411"
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
