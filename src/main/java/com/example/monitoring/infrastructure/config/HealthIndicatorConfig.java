@@ -1,4 +1,4 @@
-package com.example.monitoring.config;
+package com.example.monitoring.infrastructure.config;
 
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health;

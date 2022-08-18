@@ -6,7 +6,7 @@ spring:
     show-sql: false
   data:
     mongodb:
-      uri: 'mongodb://mongo:27017/app'
+      uri: 'mongodb://mongodb:27017/app'
 
 management:
   metrics:

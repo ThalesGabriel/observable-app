@@ -60,11 +60,4 @@ spec:
         ports:
         - containerPort:  80
           name:  monitoring-app
-        volumeMounts:
-        - name: localtime
-          mountPath: /etc/localtime
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
       restartPolicy: Always
